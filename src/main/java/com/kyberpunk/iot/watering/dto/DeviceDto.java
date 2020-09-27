@@ -4,8 +4,7 @@ import lombok.Data;
 
 @Data
 public class DeviceDto {
-    private String Id;
-    private boolean swicthedOn;
-    private Integer timeout;
-    private Integer lastChangeUtcMillis;
+    private String deviceId;
+    private String ip;
+    private String description;
 }

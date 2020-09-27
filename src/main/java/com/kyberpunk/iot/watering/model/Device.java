@@ -2,12 +2,17 @@ package com.kyberpunk.iot.watering.model;
 
 import lombok.Data;
 
-import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Data
+@Entity
 public class Device {
+    @Id
     private String deviceId;
-    private boolean switchedOn;
-    private Integer timeout;
-    private Date lastChange;
+    @Column(nullable = false)
+    private String ip;
+    @Column(nullable = false)
+    private String description;
 }

@@ -1,7 +1,4 @@
 <!doctype html>
-<%@ page contentType="text/html;charset=UTF-8" pageEncoding="utf-8" trimDirectiveWhitespaces="false" session="false" %>
-<%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -31,7 +28,7 @@
     <link href="/css/dashboard.css" rel="stylesheet">
   </head>
   <body>
-  <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
   <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">Watering Service</a>
   <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -41,7 +38,7 @@
       <a class="nav-link" href="#">Sign in</a>
     </li>
   </ul>
-  </nav>
+</nav>
 
 <div class="container-fluid">
   <div class="row">
@@ -66,42 +63,25 @@
 
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Devices</h1>
-        <div class="btn-toolbar mb-2 mb-md-0">
-          <div class="btn-group mr-2">
-            <a class="btn btn-sm btn-outline-primary" href="/devices/add" role="button">Add device</a>
-          </div>
-        </div>
+        <h1 class="h2">Add device</h1>
       </div>
 
-      <div class="table-responsive">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Device ID</th>
-              <th>IP address</th>
-              <th>Description</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <c:forEach items="${devices}" var="device">
-            <tr>
-              <td><c:out value="${device.deviceId}"/></td>
-              <td><c:out value="${device.ip}"/></td>
-              <td><c:out value="${device.description}"/></td>
-              <td>
-                <div class="btn-toolbar mb-2 mb-md-0">
-                  <div class="btn-group mr-2">
-                    <button type="button" class="btn btn-sm btn-outline-primary">Edit</button>
-                    <button type="button" class="btn btn-sm btn-outline-danger">Delete</button>
-                  </div>
-                </div>
-              </td>
-            </tr>
-            </c:forEach>
-          </tbody>
-        </table>
+      <form>
+        <div class="form-group">
+          <label for="inputDeviceId">Device ID</label>
+          <input type="text" class="form-control" id="inputDeviceId" placeholder="Enter device ID">
+        </div>
+        <div class="form-group">
+          <label for="inputIpAddress">IP address</label>
+          <input type="text" class="form-control" id="inputIpAddress" placeholder="Enter IP address" pattern="^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$">
+        </div>
+        <div class="form-group">
+          <label for="inputDescription">Description</label>
+          <textarea class="form-control" id="inputDescription" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <a class="btn btn-danger" href="/devices" role="button">Cancel</a>
+      </form>
       </div>
     </main>
   </div>
