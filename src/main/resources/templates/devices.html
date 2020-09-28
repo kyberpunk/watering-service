@@ -35,7 +35,7 @@
   </button>
   <ul class="navbar-nav px-3">
     <li class="nav-item text-nowrap">
-      <a class="nav-link" href="#">Sign in</a>
+      <a class="nav-link" href="#">Sign out</a>
     </li>
   </ul>
   </nav>
@@ -75,6 +75,7 @@
         <table class="table">
           <thead>
             <tr>
+              <th>Status</th>
               <th>Device ID</th>
               <th>IP address</th>
               <th>Description</th>
@@ -84,14 +85,17 @@
           <tbody>
           <th:block th:each="device : ${devices}">
             <tr>
+              <td>
+                <i th:if="${device.status == 'ONLINE'}" data-feather="check-circle"></i>
+                <i th:unless="${device.status == 'ONLINE'}" data-feather="alert-circle"></i>
+              </td>
               <td th:text="${device.deviceId}"></td>
               <td th:text="${device.ip}"></td>
               <td th:text="${device.description}"></td>
               <td>
                 <div class="btn-toolbar mb-2 mb-md-0">
                   <div class="btn-group mr-2">
-                    <button type="button" class="btn btn-sm btn-outline-primary">Edit</button>
-                    <button type="button" class="btn btn-sm btn-outline-danger">Delete</button>
+                    <a class="btn btn-sm btn-outline-danger" th:href="@{/devices/delete/{id}(id=${device.deviceId})}" role="button">Delete</a>
                   </div>
                 </div>
               </td>

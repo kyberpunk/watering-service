@@ -15,4 +15,6 @@ public class Device {
     private String ip;
     @Column(nullable = false)
     private String description;
+    @Column(nullable = false)
+    private DeviceStatus status;
 }

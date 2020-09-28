@@ -1,9 +1,10 @@
 package com.kyberpunk.iot.watering.controller;
 
+import com.kyberpunk.iot.watering.dto.NewDeviceDto;
 import com.kyberpunk.iot.watering.service.DevicesService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class DeviceController {
@@ -22,6 +23,19 @@ public class DeviceController {
 
     @GetMapping("devices/add")
     public String addDeviceView(Model model) {
+        model.addAttribute("device", new NewDeviceDto());
         return "add_device";
+    }
+
+    @PostMapping("devices")
+    public String addDevice(@ModelAttribute NewDeviceDto device, Model model) {
+        devicesService.create(device);
+        return "redirect:/devices";
+    }
+
+    @GetMapping("devices/delete/{deviceId}")
+    public String deleteDevice(@PathVariable String deviceId) {
+        devicesService.delete(deviceId);
+        return "redirect:/devices";
     }
 }

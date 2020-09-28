@@ -7,6 +7,6 @@ import org.springframework.context.annotation.Configuration;
 @Data
 @Configuration
 @ConfigurationProperties(prefix = "watering")
-public class WateringConfiguration {
-    private String[] devices;
+public class WateringProperties {
+
 }
