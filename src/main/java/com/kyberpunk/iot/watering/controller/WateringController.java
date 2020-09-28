@@ -11,8 +11,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class WateringController {
-    @GetMapping(value={"/", "watering"})
-    public String getDevicesView(Model model) {
+    @GetMapping("/")
+    public String defaultView(Model model) {
+        return "redirect:/watering";
+    }
+
+    @GetMapping("watering")
+    public String getWateringView(Model model) {
         return "watering";
     }
 }
