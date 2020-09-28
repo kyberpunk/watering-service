@@ -14,7 +14,7 @@ public class DeviceController {
         this.devicesService = devicesService;
     }
 
-    @GetMapping(value={"/", "devices"})
+    @GetMapping("devices")
     public String getDevicesView(Model model) {
         var devices = devicesService.findAll();
         model.addAttribute("devices", devices);

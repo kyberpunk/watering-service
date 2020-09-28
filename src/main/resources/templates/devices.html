@@ -11,7 +11,7 @@
         <h1 class="h2">Devices</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
           <div class="btn-group mr-2">
-            <a class="btn btn-sm btn-outline-primary" href="/devices/add" role="button">Add device</a>
+            <a class="btn btn-sm btn-outline-primary" th:href="@{/devices/add}" role="button">Add device</a>
           </div>
         </div>
       </div>
@@ -31,8 +31,8 @@
           <th:block th:each="device : ${devices}">
             <tr>
               <td>
-                <i th:if="${device.status == 'ONLINE'}" data-feather="check-circle"></i>
-                <i th:unless="${device.status == 'ONLINE'}" data-feather="alert-circle"></i>
+                <span th:if="${device.status == 'ONLINE'}" class="text-success" data-feather="check-circle"></span>
+                <span th:unless="${device.status == 'ONLINE'}" class="text-danger" data-feather="alert-circle"></span>
               </td>
               <td th:text="${device.deviceId}"></td>
               <td th:text="${device.ip}"></td>
