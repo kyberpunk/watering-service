@@ -53,6 +53,12 @@
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" th:classappend="${selectedMenuItem == 'schedules'}? 'active'" th:href="@{/schedules}">
+              <span data-feather="clock"></span>
+              Schedules <span class="sr-only" th:if="${selectedMenuItem == 'schedules'}">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" th:classappend="${selectedMenuItem == 'devices'}? 'active'" th:href="@{/devices}">
               <span data-feather="cpu"></span>
               Devices <span class="sr-only" th:if="${selectedMenuItem == 'devices'}">(current)</span>

@@ -8,7 +8,7 @@ import javax.validation.constraints.Pattern;
 
 @Data
 public class NewDeviceDto {
-    @NotEmpty
+    @NotEmpty(message = "Device ID must not be empty.")
     private String deviceId;
     @Pattern(regexp = "^((0|1\\d?\\d?|2[0-4]?\\d?|25[0-5]?|[3-9]\\d?)\\.){3}(0|1\\d?\\d?|2[0-4]?\\d?|25[0-5]?|[3-9]\\d?)$", message = "Provide valid IPv4 address.")
     private String ip;

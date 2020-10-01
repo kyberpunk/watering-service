@@ -3,7 +3,6 @@ package com.kyberpunk.iot.watering.service;
 import com.kyberpunk.iot.watering.dto.DeviceDto;
 import com.kyberpunk.iot.watering.dto.NewDeviceDto;
 import com.kyberpunk.iot.watering.mapper.DeviceMapper;
-import com.kyberpunk.iot.watering.model.Device;
 import com.kyberpunk.iot.watering.model.DeviceStatus;
 import com.kyberpunk.iot.watering.repository.DeviceRepository;
 import org.springframework.stereotype.Service;

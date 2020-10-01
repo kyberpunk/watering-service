@@ -4,6 +4,7 @@ import com.kyberpunk.iot.watering.dto.NewDeviceDto;
 import com.kyberpunk.iot.watering.service.DevicesService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,7 +30,11 @@ public class DeviceController {
     }
 
     @PostMapping("devices")
-    public String addDevice(@Validated @ModelAttribute NewDeviceDto device, Model model) {
+    public String addDevice(@Validated @ModelAttribute("device") NewDeviceDto device, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("device", device);
+            return "add_device";
+        }
         devicesService.create(device);
         return "redirect:/devices";
     }

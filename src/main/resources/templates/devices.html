@@ -24,6 +24,7 @@
               <th>Device ID</th>
               <th>IP address</th>
               <th>Description</th>
+              <th>Last watered</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -37,6 +38,7 @@
               <td th:text="${device.deviceId}"></td>
               <td th:text="${device.ip}"></td>
               <td th:text="${device.description}"></td>
+              <td th:text="${device.lastWatered}"></td>
               <td>
                 <div class="btn-toolbar mb-2 mb-md-0">
                   <div class="btn-group mr-2">
