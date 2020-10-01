@@ -6,6 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 
 @Data
@@ -13,6 +14,7 @@ public class ScheduleDto {
     private long id;
     private boolean active;
     private String description;
+    @NotEmpty(message = "Any device must be selected.")
     private String deviceId;
     private String deviceDisplayValue;
     @Min(value = 1, message = "Interval must be greater than 1.")
