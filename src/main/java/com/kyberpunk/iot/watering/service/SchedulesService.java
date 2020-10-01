@@ -37,9 +37,13 @@ public class SchedulesService {
     }
 
     public ScheduleDto create(ScheduleDto dto) {
-        dto.setLastWatered(null);
-        dto.setActive(true);
-        return update(dto);
+        var schedule = scheduleMapper.dtoToEntity(dto);
+        var device = deviceRepository.findById(dto.getDeviceId()).orElseThrow();
+        schedule.setDevice(device);
+        schedule.setLastWatered(null);
+        schedule.setActive(true);
+        var created = scheduleRepository.save(schedule);
+        return entityToDto(created);
     }
 
     public ScheduleDto update(ScheduleDto dto) {
