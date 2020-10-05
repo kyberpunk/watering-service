@@ -8,6 +8,6 @@ import java.util.Date;
 public class DeviceInfo {
     private String deviceId;
     private boolean switchedOn;
-    private Integer timeout;
+    private int timeout;
     private Date lastChange;
 }
