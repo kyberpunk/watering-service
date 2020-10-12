@@ -2,6 +2,7 @@ package com.kyberpunk.iot.watering.controller;
 
 import com.kyberpunk.iot.watering.dto.WateringDto;
 import com.kyberpunk.iot.watering.service.DevicesService;
+import com.kyberpunk.iot.watering.service.WateringService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,9 +14,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class WateringController {
     private final DevicesService devicesService;
+    private final WateringService wateringService;
 
-    public WateringController(DevicesService devicesService) {
+    public WateringController(DevicesService devicesService, WateringService wateringService) {
         this.devicesService = devicesService;
+        this.wateringService = wateringService;
     }
 
     @GetMapping("/")
@@ -35,7 +38,8 @@ public class WateringController {
         if (bindingResult.hasErrors()) {
             return "watering";
         } else {
-            model.addAttribute("success", true);
+            boolean result = wateringService.waterNow(watering);
+            model.addAttribute("success", result);
         }
         model.addAttribute("devices", devicesService.findAll());
         return "watering";
