@@ -22,14 +22,15 @@ public class WateringService {
 
     public boolean waterNow(WateringDto watering) {
         var device = deviceRepository.findById(watering.getDeviceId()).orElseThrow();
+        device.setLastWatered(LocalDateTime.now());
         try {
-            client.executeSwitchCommand(device.getIp(), true, watering.getDuration() * 1000).get();
+            boolean success = client.executeSwitchCommand(device.getIp(), true, watering.getDuration() * 1000).get();
+            if (success)
+                deviceRepository.save(device);
         } catch (Exception e) {
             log.warn("Execution of watering failed.", e);
             return false;
         }
-        device.setLastWatered(LocalDateTime.now());
-        deviceRepository.save(device);
         return true;
     }
 }
