@@ -32,8 +32,8 @@
           <th:block th:each="device : ${devices}">
             <tr>
               <td>
-                <span th:if="${device.status == 'ONLINE'}" class="text-success" data-feather="check-circle"></span>
-                <span th:unless="${device.status == 'ONLINE'}" class="text-danger" data-feather="alert-circle"></span>
+                <span th:if="${device.status == T(com.kyberpunk.iot.watering.model.DeviceStatus).ONLINE}" class="text-success" data-feather="check-circle"></span>
+                <span th:unless="${device.status == T(com.kyberpunk.iot.watering.model.DeviceStatus).ONLINE}" class="text-danger" data-feather="alert-circle"></span>
               </td>
               <td th:text="${device.deviceId}"></td>
               <td th:text="${device.ip}"></td>
