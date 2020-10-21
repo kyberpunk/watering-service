@@ -1,6 +1,7 @@
 package com.kyberpunk.iot.watering.task;
 
 import com.kyberpunk.iot.watering.client.DeviceApiClient;
+import com.kyberpunk.iot.watering.client.DeviceInfo;
 import com.kyberpunk.iot.watering.model.Schedule;
 import com.kyberpunk.iot.watering.repository.ScheduleRepository;
 import com.kyberpunk.iot.watering.service.DevicesService;
@@ -55,8 +56,8 @@ public class WateringTask {
         String ip = schedule.getDevice().getIp();
         int durationMillis = schedule.getDuration() * 1000;
         return deviceApiClient.executeSwitchCommand(ip, true, durationMillis)
-                .thenAccept(success -> {
-                    if (success) {
+                .thenAccept(info -> {
+                    if (info.isSwitchedOn()) {
                         schedule.setLastWatered(now);
                         schedule.getDevice().setLastWatered(now);
                     }

@@ -8,12 +8,10 @@ import com.kyberpunk.iot.watering.model.Device;
 import com.kyberpunk.iot.watering.model.DeviceStatus;
 import com.kyberpunk.iot.watering.repository.DeviceRepository;
 import lombok.SneakyThrows;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Future;
 import java.util.stream.Collectors;
 
 @Service
@@ -33,9 +31,11 @@ public class DevicesService {
         return deviceMapper.entityToDto(devices);
     }
 
+    @SneakyThrows
     public DeviceDto create(NewDeviceDto dto) {
         var device = deviceMapper.dtoToEntity(dto);
         device.setStatus(DeviceStatus.OFFLINE);
+        createStateFuture(device).get();
         var created = deviceRepository.save(device);
         return deviceMapper.entityToDto(created);
     }
