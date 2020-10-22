@@ -31,6 +31,10 @@ public class DeviceController {
 
     @PostMapping("devices")
     public String addDevice(@Validated @ModelAttribute("device") NewDeviceDto device, BindingResult bindingResult, Model model) {
+        if (device != null && device.getDeviceId() != null
+                && devicesService.findById(device.getDeviceId()).isPresent()) {
+            bindingResult.rejectValue("deviceId", "Id Not Unique", "Device ID already exists.");
+        }
         if (bindingResult.hasErrors()) {
             model.addAttribute("device", device);
             return "add_device";

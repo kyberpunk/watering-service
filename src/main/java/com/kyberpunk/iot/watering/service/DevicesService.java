@@ -11,6 +11,7 @@ import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
@@ -29,6 +30,16 @@ public class DevicesService {
     public List<DeviceDto> findAll() {
         var devices = deviceRepository.findAll();
         return deviceMapper.entityToDto(devices);
+    }
+
+    public Optional<DeviceDto> findById(String deviceId) {
+        var optionalDevice = deviceRepository.findById(deviceId);
+        if (optionalDevice.isPresent()) {
+            DeviceDto dto = deviceMapper.entityToDto(optionalDevice.get());
+            return Optional.of(dto);
+        } else {
+            return Optional.empty();
+        }
     }
 
     @SneakyThrows
