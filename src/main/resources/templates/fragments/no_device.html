@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <body>
+  <div th:fragment="no_device" class="d-flex justify-content-center">
+    <div class="card col-md-auto text-center">
+      <div class="card-body">
+        <h5 class="card-title">No watering device</h5>
+        <p class="card-text">At least one device must be added before continuing.</p>
+        <a class="btn btn-primary" th:href="@{/devices/add}">Add device</a>
+      </div>
+    </div>
+  </div>
+  </body>
+</html>

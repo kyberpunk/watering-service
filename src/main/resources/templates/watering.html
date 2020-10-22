@@ -15,21 +15,7 @@
       </div>
       <div th:if="${error != null}" th:text="|Watering failed: ${error}|" class="alert alert-danger" role="alert">
       </div>
-      <form method="POST" action="#" th:action="@{/watering}" th:object="${watering}">
-        <div class="form-group">
-          <label for="inputDevice">Watering device</label>
-          <select class="form-control" th:classappend="${#fields.hasErrors('deviceId')}? 'is-invalid'" id="inputDevice" th:field="*{deviceId}">
-            <option th:each="device : ${devices}" th:value="${device.deviceId}" th:text="${device.getDisplayValue()}"></option>
-          </select>
-          <div class="invalid-feedback" th:if="${#fields.hasErrors('deviceId')}" th:errors="*{deviceId}"></div>
-        </div>
-        <div class="form-group">
-          <label for="inputDuration">Duration (seconds)</label>
-          <input type="number" th:field="*{duration}" class="form-control" th:classappend="${#fields.hasErrors('duration')}? 'is-invalid'" id="inputDuration" placeholder="Enter description">
-          <div class="invalid-feedback" th:if="${#fields.hasErrors('duration')}" th:errors="*{duration}"></div>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
+      <div th:replace="${devices.isEmpty()} ? ~{fragments/no_device :: no_device} : ~{fragments/watering_form :: watering_form}"></div>
     </main>
   </body>
 </html>
