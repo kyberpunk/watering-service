@@ -16,6 +16,7 @@ public class Schedule {
     private boolean active;
     private String description;
     @ManyToOne(optional = false)
+    @JoinColumn(name = "device_id")
     private Device device;
     @Column(name="intervalValue")
     private int interval;

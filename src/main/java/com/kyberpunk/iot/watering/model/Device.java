@@ -2,10 +2,9 @@ package com.kyberpunk.iot.watering.model;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Entity
@@ -19,4 +18,6 @@ public class Device {
     @Column(nullable = false)
     private DeviceStatus status;
     private LocalDateTime lastWatered;
+    @OneToMany(targetEntity = Schedule.class, mappedBy = "device", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    private List<Schedule> schedules;
 }
