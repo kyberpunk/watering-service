@@ -36,6 +36,7 @@ public class WateringTask {
     public void processSchedules() {
         LocalDateTime now = LocalDateTime.now().withSecond(0);
         var schedulesToExecute = scheduleRepository.findAll().stream()
+                .filter(Schedule::isActive)
                 .filter(s -> isWateringNeeded(s, now))
                 .collect(Collectors.toList());
         var executedFutures = schedulesToExecute.stream()
@@ -46,10 +47,17 @@ public class WateringTask {
     }
 
     private boolean isWateringNeeded(Schedule schedule, LocalDateTime now) {
+        // Check if schedule started
+        if (now.isBefore(schedule.getStartAt()))
+            return false;
+        // If not watered yet then water immediately
+        if (schedule.getLastWatered() == null)
+            return true;
+
         LocalDateTime nextWatering = schedule.getLastWatered()
                 .withSecond(0)
                 .plus(schedule.getInterval(), schedule.getUnit().getTemporalUnit());
-        return schedule.getLastWatered().isBefore(nextWatering);
+        return now.isEqual(nextWatering) || now.isAfter(nextWatering);
     }
 
     private CompletableFuture<Void> execute(Schedule schedule, LocalDateTime now) {
