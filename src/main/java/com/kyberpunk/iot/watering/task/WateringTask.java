@@ -69,6 +69,10 @@ public class WateringTask {
                         schedule.setLastWatered(now);
                         schedule.getDevice().setLastWatered(now);
                     }
+                })
+                .exceptionally((e) -> {
+                    log.debug("Schedule request failed.", e);
+                    return null;
                 });
     }
 
