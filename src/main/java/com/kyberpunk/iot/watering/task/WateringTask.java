@@ -32,9 +32,10 @@ public class WateringTask {
         devicesService.updateDevices();
     }
 
-    @Scheduled(cron = "1 * * * * *")
+    @Scheduled(cron = "0 * * * * *")
     public void processSchedules() {
-        LocalDateTime now = LocalDateTime.now().withSecond(0);
+        LocalDateTime now = LocalDateTime.now().withSecond(0).withNano(0);
+        log.debug("Processing schedules: " + now);
         var schedulesToExecute = scheduleRepository.findAll().stream()
                 .filter(Schedule::isActive)
                 .filter(s -> isWateringNeeded(s, now))
@@ -53,9 +54,11 @@ public class WateringTask {
         // If not watered yet then water immediately
         if (schedule.getLastWatered() == null)
             return true;
+        log.debug("Schedule: " + schedule);
 
         LocalDateTime nextWatering = schedule.getLastWatered()
                 .withSecond(0)
+                .withNano(0)
                 .plus(schedule.getInterval(), schedule.getUnit().getTemporalUnit());
         return now.isEqual(nextWatering) || now.isAfter(nextWatering);
     }

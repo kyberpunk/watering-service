@@ -1,12 +1,14 @@
 package com.kyberpunk.iot.watering.model;
 
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Data
 @Entity
+@ToString
 public class Schedule {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
