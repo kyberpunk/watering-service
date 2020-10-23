@@ -32,7 +32,7 @@ public class WateringTask {
         devicesService.updateDevices();
     }
 
-    @Scheduled(cron = "0 * * * * *")
+    @Scheduled(cron = "1 * * * * *")
     public void processSchedules() {
         LocalDateTime now = LocalDateTime.now().withSecond(0);
         var schedulesToExecute = scheduleRepository.findAll().stream()
