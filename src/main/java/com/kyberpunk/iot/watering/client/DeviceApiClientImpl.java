@@ -12,14 +12,14 @@ import java.util.concurrent.CompletableFuture;
 public class DeviceApiClientImpl implements  DeviceApiClient {
     @Async
     public CompletableFuture<DeviceInfo> getState(String ip) {
-        var template = new RestTemplate();
+        var template = createRestTemplate();
         var result = template.getForObject(getRequestUrl(ip), DeviceInfo.class);
         return CompletableFuture.completedFuture(result);
     }
 
     @Async
     public CompletableFuture<DeviceInfo> executeSwitchCommand(String ip, boolean state, int timeout) {
-        var template = new RestTemplate();
+        var template = createRestTemplate();
         var command = new SwitchCommand(state, timeout);
         DeviceInfo info = template.postForObject(getRequestUrl(ip), command, DeviceInfo.class);
         return CompletableFuture.completedFuture(info);
