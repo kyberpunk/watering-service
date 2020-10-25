@@ -8,12 +8,10 @@
   <body>
     <main layout:fragment="content" role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Water now</h1>
+        <h1 class="h2" th:text="#{watering.water_now}"></h1>
       </div>
-      <div th:if="${success != null}" class="alert alert-success" role="alert">
-        Watering was successfully executed!
-      </div>
-      <div th:if="${error != null}" th:text="|Watering failed: ${error}|" class="alert alert-danger" role="alert">
+      <div th:if="${success != null}" class="alert alert-success" role="alert" th:text="#{watering.success}"></div>
+      <div th:if="${error != null}" th:text="|#{watering.failed}: ${error}|" class="alert alert-danger" role="alert">
       </div>
       <div th:replace="${devices.isEmpty()} ? ~{fragments/no_device :: no_device} : ~{fragments/watering_form :: watering_form}"></div>
     </main>

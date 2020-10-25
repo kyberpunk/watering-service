@@ -13,15 +13,16 @@ import java.time.LocalDateTime;
 public class ScheduleDto {
     private long id;
     private boolean active;
+    @NotEmpty(message = "{validation.description_empty}")
     private String description;
-    @NotEmpty(message = "Any device must be selected.")
+    @NotEmpty(message = "{validation.device_empty}")
     private String deviceId;
     private String deviceDisplayValue;
-    @Min(value = 1, message = "Interval must be greater than 1.")
+    @Min(value = 1, message = "{validation.interval_min}")
     private int interval;
     private TimeUnit unit;
-    @Max(value = 30, message = "Duration must be less than 30 s.")
-    @Min(value = 1, message = "Duration must be greater than 1.")
+    @Max(value = 30, message = "{validation.duration_max}")
+    @Min(value = 1, message = "{validation.duration_min}")
     private int duration;
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime startAt;

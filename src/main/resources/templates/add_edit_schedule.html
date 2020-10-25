@@ -3,14 +3,14 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout}">
   <head>
-    <title th:if="${schedule.id == 0}">New schedule - Watering Service</title>
-    <title th:unless="${schedule.id == 0}">Edit schedule - Watering Service</title>
+    <title th:if="${schedule.id == 0}" th:text="|#{schedule.new_schedule} - #{common.watering_service}|"></title>
+    <title th:unless="${schedule.id == 0}" th:text="|#{schedule.edit_schedule} - #{common.watering_service}|"></title>
   </head>
   <body>
     <main layout:fragment="content" role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 th:if="${schedule.id == 0}" class="h2">New schedule</h1>
-        <h1 th:unless="${schedule.id == 0}" class="h2">Edit schedule</h1>
+        <h1 th:if="${schedule.id == 0}" class="h2" th:text="#{schedule.new_schedule}"></h1>
+        <h1 th:unless="${schedule.id == 0}" class="h2" th:text="#{schedule.edit_schedule}"></h1>
       </div>
       <div th:replace="${devices.isEmpty()} ? ~{fragments/no_device :: no_device} : ~{fragments/schedule_form :: schedule_form}"></div>
     </main>

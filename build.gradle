@@ -29,6 +29,7 @@ dependencies {
 	implementation 'org.webjars:bootstrap:4.5.0'
 	implementation 'org.webjars.npm:feather-icons:4.28.0'
 	implementation 'org.jetbrains:annotations:19.0.0'
+	implementation 'commons-validator:commons-validator:1.7'
 	compileOnly 'org.projectlombok:lombok:1.18.12'
 	runtimeOnly 'com.h2database:h2:1.4.200'
 	runtimeOnly 'org.postgresql:postgresql:42.2.15'

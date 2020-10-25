@@ -8,9 +8,9 @@ import javax.validation.constraints.NotEmpty;
 
 @Data
 public class WateringDto {
-    @NotEmpty(message = "Any device must be selected.")
+    @NotEmpty(message = "{validation.device_empty}")
     private String deviceId;
-    @Max(value = 30, message = "Duration must be less than 30 s.")
-    @Min(value = 1, message = "Duration must be greater than 1.")
+    @Max(value = 30, message = "{validation.duration_max}")
+    @Min(value = 1, message = "{validation.duration_min}")
     private int duration;
 }

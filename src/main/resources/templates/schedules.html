@@ -3,15 +3,15 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout}">
   <head>
-    <title>Schedules - Watering Service</title>
+    <title th:text="|#{schedule.schedules} - #{common.watering_service}|"></title>
   </head>
   <body>
     <main layout:fragment="content" role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Schedules</h1>
+        <h1 class="h2" th:text="#{schedule.schedules}"></h1>
         <div class="btn-toolbar mb-2 mb-md-0">
           <div class="btn-group mr-2">
-            <a class="btn btn-sm btn-outline-primary" th:href="@{/schedules/add}" role="button">New schedule</a>
+            <a class="btn btn-sm btn-outline-primary" th:href="@{/schedules/add}" role="button" th:text="#{schedule.new_schedule}"></a>
           </div>
         </div>
       </div>
@@ -20,22 +20,22 @@
         <table class="table">
           <thead>
           <tr>
-            <th>Active</th>
-            <th>Description</th>
-            <th>Device</th>
-            <th>Interval</th>
-            <th>Duration</th>
-            <th>Start at</th>
-            <th>Last watered</th>
-            <th>Actions</th>
+            <th th:text="#{schedule.active}"></th>
+            <th th:text="#{common.description}"></th>
+            <th th:text="#{schedule.device}"></th>
+            <th th:text="#{schedule.interval}"></th>
+            <th th:text="#{common.duration_seconds}"></th>
+            <th th:text="#{schedule.start_at}"></th>
+            <th th:text="#{watering.last_watered}"></th>
+            <th th:text="#{common.actions}"></th>
           </tr>
           </thead>
           <tbody>
           <th:block th:each="schedule : ${schedules}">
             <tr>
               <td>
-                <span th:if="${schedule.active}" class="text-success">On</span>
-                <span th:unless="${schedule.active}" class="text-muted">Off</span>
+                <span th:if="${schedule.active}" class="text-success" th:text="#{common.on}"></span>
+                <span th:unless="${schedule.active}" class="text-muted" th:text="#{common.off}"></span>
               </td>
               <td th:text="${schedule.description}"></td>
               <td th:text="${schedule.deviceDisplayValue}"></td>
@@ -43,15 +43,15 @@
                 <span th:text="|${schedule.interval} ${schedule.unit.getDisplayValue()}|"></span>
               </td>
               <td th:text="|${schedule.duration} seconds|"></td>
-              <td th:text="${schedule.startAt}"></td>
-              <td th:text="${schedule.lastWatered}"></td>
+              <td th:text="${T(com.kyberpunk.iot.watering.dto.DateFormatHelper).format(schedule.startAt)}"></td>
+              <td th:text="${T(com.kyberpunk.iot.watering.dto.DateFormatHelper).format(schedule.lastWatered)}"></td>
               <td>
                 <div class="btn-toolbar mb-2 mb-md-0">
                   <div class="btn-group mr-2">
-                    <a th:if="${schedule.active}" class="btn btn-sm btn-outline-secondary" th:href="@{/schedules/disable/{id}(id=${schedule.id})}" role="button">Disable</a>
-                    <a th:unless="${schedule.active}" class="btn btn-sm btn-outline-success" th:href="@{/schedules/enable/{id}(id=${schedule.id})}" role="button">Enable</a>
-                    <a class="btn btn-sm btn-outline-primary" th:href="@{/schedules/edit/{id}(id=${schedule.id})}" role="button">Edit</a>
-                    <a class="btn btn-sm btn-outline-danger" th:href="@{/schedules/delete/{id}(id=${schedule.id})}" role="button">Delete</a>
+                    <a th:if="${schedule.active}" class="btn btn-sm btn-outline-secondary" th:href="@{/schedules/disable/{id}(id=${schedule.id})}" role="button" th:text="#{common.disable}"></a>
+                    <a th:unless="${schedule.active}" class="btn btn-sm btn-outline-success" th:href="@{/schedules/enable/{id}(id=${schedule.id})}" role="button" th:text="#{common.enable}"></a>
+                    <a class="btn btn-sm btn-outline-primary" th:href="@{/schedules/edit/{id}(id=${schedule.id})}" role="button" th:text="#{common.edit}"></a>
+                    <a class="btn btn-sm btn-outline-danger" th:href="@{/schedules/delete/{id}(id=${schedule.id})}" role="button" th:text="#{common.delete}"></a>
                   </div>
                 </div>
               </td>

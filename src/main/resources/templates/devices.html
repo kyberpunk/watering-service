@@ -3,15 +3,15 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout}">
   <head>
-    <title>Devices - Watering Service</title>
+    <title th:text="|#{devices.devices} - #{common.watering_service}|"></title>
   </head>
   <body>
     <main layout:fragment="content" role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Devices</h1>
+        <h1 class="h2" th:text="#{devices.devices}"></h1>
         <div class="btn-toolbar mb-2 mb-md-0">
           <div class="btn-group mr-2">
-            <a class="btn btn-sm btn-outline-primary" th:href="@{/devices/add}" role="button">Add device</a>
+            <a class="btn btn-sm btn-outline-primary" th:href="@{/devices/add}" role="button" th:text="#{devices.add_device}"></a>
           </div>
         </div>
       </div>
@@ -20,12 +20,12 @@
         <table class="table">
           <thead>
             <tr>
-              <th>Status</th>
-              <th>Device ID</th>
-              <th>IP address</th>
-              <th>Description</th>
-              <th>Last watered</th>
-              <th>Actions</th>
+              <th th:text="#{devices.status}"></th>
+              <th th:text="#{devices.device_id}"></th>
+              <th th:text="#{devices.ip_address}"></th>
+              <th th:text="#{common.description}"></th>
+              <th th:text="#{watering.last_watered}"></th>
+              <th th:text="#{common.actions}"></th>
             </tr>
           </thead>
           <tbody>
@@ -38,12 +38,12 @@
               <td th:text="${device.deviceId}"></td>
               <td th:text="${device.ip}"></td>
               <td th:text="${device.description}"></td>
-              <td th:text="${device.lastWatered}"></td>
+              <td th:text="${T(com.kyberpunk.iot.watering.dto.DateFormatHelper).format(device.lastWatered)}"></td>
               <td>
                 <div class="btn-toolbar mb-2 mb-md-0">
                   <div class="btn-group mr-2">
-                    <a class="btn btn-sm btn-outline-secondary" th:href="@{http://{ip}(ip=${device.ip})}" role="button">Link</a>
-                    <a class="btn btn-sm btn-outline-danger" th:href="@{/devices/delete/{id}(id=${device.deviceId})}" role="button">Delete</a>
+                    <a class="btn btn-sm btn-outline-secondary" th:href="@{http://{ip}(ip=${device.ip})}" role="button" th:text="#{common.link}"></a>
+                    <a class="btn btn-sm btn-outline-danger" th:href="@{/devices/delete/{id}(id=${device.deviceId})}" role="button" th:text="#{common.delete}"></a>
                   </div>
                 </div>
               </td>

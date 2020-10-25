@@ -20,7 +20,7 @@ public class WateringService {
         this.deviceRepository = deviceRepository;
     }
 
-    public boolean waterNow(WateringDto watering) {
+    public void waterNow(WateringDto watering) {
         var device = deviceRepository.findById(watering.getDeviceId()).orElseThrow();
         device.setLastWatered(LocalDateTime.now());
         try {
@@ -29,8 +29,7 @@ public class WateringService {
                 deviceRepository.save(device);
         } catch (Exception e) {
             log.warn("Execution of watering failed.", e);
-            return false;
+            throw new WateringException(this.getClass().getName() + ": nested exception: " + e.getMessage(), e);
         }
-        return true;
     }
 }
