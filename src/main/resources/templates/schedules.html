@@ -40,7 +40,7 @@
               <td th:text="${schedule.description}"></td>
               <td th:text="${schedule.deviceDisplayValue}"></td>
               <td>
-                <span th:text="|${schedule.interval} ${schedule.unit.getDisplayValue()}|"></span>
+                <span th:text="|${schedule.interval} #{'common.unit.'+${schedule.unit}}|"></span>
               </td>
               <td th:text="|${schedule.duration} seconds|"></td>
               <td th:text="${T(com.kyberpunk.iot.watering.dto.DateFormatHelper).format(schedule.startAt)}"></td>

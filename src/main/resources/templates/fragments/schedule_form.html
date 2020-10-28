@@ -5,7 +5,7 @@
       <input type="hidden" th:field="*{id}" class="form-control">
       <div class="form-group">
         <label for="inputDescription" th:text="#{common.description}"></label>
-        <input type="text" th:field="*{description}" class="form-control" th:classappend="${#fields.hasErrors('description')}? 'is-invalid'" id="inputDescription" placeholder="Enter description">
+        <input type="text" th:field="*{description}" class="form-control" th:classappend="${#fields.hasErrors('description')}? 'is-invalid'" id="inputDescription" th:placeholder="#{common.enter_description}">
         <div class="invalid-feedback" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></div>
       </div>
       <div class="form-group">
@@ -25,7 +25,7 @@
           <label for="inputUnit" th:text="#{schedule.unit}"></label>
           <select class="form-control" th:field="*{unit}" id="inputUnit">
             <option th:each="unit : ${T(com.kyberpunk.iot.watering.model.TimeUnit).values()}" th:value="${unit}"
-                    th:text="${unit.getDisplayValue()}"></option>
+                    th:text="#{'common.unit.'+${unit}}"></option>
           </select>
         </div>
       </div>

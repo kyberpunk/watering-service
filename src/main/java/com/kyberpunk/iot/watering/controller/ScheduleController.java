@@ -1,6 +1,7 @@
 package com.kyberpunk.iot.watering.controller;
 
 import com.kyberpunk.iot.watering.dto.ScheduleDto;
+import com.kyberpunk.iot.watering.model.TimeUnit;
 import com.kyberpunk.iot.watering.service.DevicesService;
 import com.kyberpunk.iot.watering.service.SchedulesService;
 import org.springframework.stereotype.Controller;
@@ -36,6 +37,7 @@ public class ScheduleController {
         model.addAttribute("devices", devicesService.findAll());
         var schedule = new ScheduleDto();
         schedule.setStartAt(LocalDateTime.now());
+        schedule.setUnit(TimeUnit.DAYS);
         model.addAttribute("schedule", schedule);
         return "add_edit_schedule";
     }

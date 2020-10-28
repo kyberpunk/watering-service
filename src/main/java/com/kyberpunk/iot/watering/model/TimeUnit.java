@@ -8,15 +8,13 @@ import java.time.temporal.TemporalUnit;
 
 @Getter
 public enum TimeUnit {
-    MINUTES("minutes", ChronoUnit.MINUTES),
-    HOURS("hours", ChronoUnit.HOURS),
-    DAYS("days", ChronoUnit.DAYS);
+    MINUTES(ChronoUnit.MINUTES),
+    HOURS(ChronoUnit.HOURS),
+    DAYS(ChronoUnit.DAYS);
 
-    private final String displayValue;
     private final TemporalUnit temporalUnit;
 
-    TimeUnit(String displayValue, TemporalUnit temporalUnit) {
-        this.displayValue = displayValue;
+    TimeUnit(TemporalUnit temporalUnit) {
         this.temporalUnit = temporalUnit;
     }
 
