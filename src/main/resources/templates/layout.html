@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
   <head>
     <meta charset="utf-8">
@@ -34,9 +35,13 @@
   <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" th:aria-label="#{common.toggle_navigation}">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <ul class="navbar-nav px-3">
+  <ul class="navbar-nav px-3" sec:authorize="isAuthenticated()">
     <li class="nav-item text-nowrap">
-      <a class="nav-link" th:href="@{/}" th:text="#{common.sign_out}"></a>
+      <form method="POST" action="#" th:action="@{/logout}" class="form-inline">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+        <div sec:authentication="name" class="text-white mr-2"></div>
+        <button id="logoutButton" type="submit" class="btn btn-sm btn-outline-light" th:text="#{common.sign_out}"></button>
+      </form>
     </li>
   </ul>
   </nav>
