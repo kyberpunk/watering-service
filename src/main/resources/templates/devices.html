@@ -38,7 +38,10 @@
               <td th:text="${device.deviceId}"></td>
               <td th:text="${device.ip}"></td>
               <td th:text="${device.description}"></td>
-              <td th:text="${T(com.kyberpunk.iot.watering.dto.DateFormatHelper).format(device.lastWatered)}"></td>
+              <td>
+                <span th:text="${T(com.kyberpunk.iot.watering.dto.DateFormatHelper).pretty(device.lastWatered)}" data-toggle="tooltip"
+                      th:title="${T(com.kyberpunk.iot.watering.dto.DateFormatHelper).format(device.lastWatered)}"></span>
+              </td>
               <td>
                 <div class="btn-toolbar mb-2 mb-md-0">
                   <div class="btn-group mr-2">

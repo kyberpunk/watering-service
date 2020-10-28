@@ -24,9 +24,9 @@
             <th th:text="#{common.description}"></th>
             <th th:text="#{schedule.device}"></th>
             <th th:text="#{schedule.interval}"></th>
-            <th th:text="#{common.duration_seconds}"></th>
+            <th th:text="#{common.duration}"></th>
             <th th:text="#{schedule.start_at}"></th>
-            <th th:text="#{watering.last_watered}"></th>
+            <th th:text="#{schedule.last_run}"></th>
             <th th:text="#{common.actions}"></th>
           </tr>
           </thead>
@@ -42,9 +42,12 @@
               <td>
                 <span th:text="|${schedule.interval} #{'common.unit.'+${schedule.unit}}|"></span>
               </td>
-              <td th:text="|${schedule.duration} seconds|"></td>
+              <td th:text="|${schedule.duration} #{common.seconds}|"></td>
               <td th:text="${T(com.kyberpunk.iot.watering.dto.DateFormatHelper).format(schedule.startAt)}"></td>
-              <td th:text="${T(com.kyberpunk.iot.watering.dto.DateFormatHelper).format(schedule.lastWatered)}"></td>
+              <td>
+                <span th:text="${T(com.kyberpunk.iot.watering.dto.DateFormatHelper).pretty(schedule.lastWatered)}" data-toggle="tooltip"
+                      th:title="${T(com.kyberpunk.iot.watering.dto.DateFormatHelper).format(schedule.lastWatered)}"></span>
+              </td>
               <td>
                 <div class="btn-toolbar mb-2 mb-md-0">
                   <div class="btn-group mr-2">
