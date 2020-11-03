@@ -62,7 +62,7 @@ jobs:
             --build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') \
             --build-arg VCS_REF=${GITHUB_SHA::8} \
             --build-arg JAR_FILE=libs/watering-service-*.jar \
-            --build-arg PROPERTIES_FILE=resources/main/application.properties \
+            --build-arg PROPERTIES_FILE=docker/application.properties \
             ${TAGS} --file ./docker/Dockerfile .
       - name: Set up Docker Buildx
         uses: crazy-max/ghaction-docker-buildx@v3
