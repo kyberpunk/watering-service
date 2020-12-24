@@ -55,7 +55,7 @@ public class Schedule {
      */
     private boolean active;
     /**
-     * Description of the schedule filled by the use.
+     * Description of the schedule filled by the user.
      */
     private String description;
     /**
@@ -74,7 +74,7 @@ public class Schedule {
      */
     private TimeUnit unit;
     /**
-     * Duration of the watering. It defines how long is the water pump running when watering is executed.
+     * Duration of the watering in seconds. It defines how long is the water pump running when watering is executed.
      */
     private int duration;
     /**
