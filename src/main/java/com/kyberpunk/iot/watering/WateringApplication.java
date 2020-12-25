@@ -77,7 +77,8 @@ public class WateringApplication {
 	}
 
 	/**
-	 * Create {@link LocaleResolver} instance which sets Locale context from HTTP header.
+	 * Create {@link LocaleResolver} instance which sets locale context from 'Accept-Language' HTTP header. This header
+	 * is usually set by browser and should be the same as system language.
 	 */
 	@Bean
 	public LocaleResolver localeResolver() {

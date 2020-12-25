@@ -1,3 +1,9 @@
+<!--/*
+Main layout for Watering Service application views. All pages are derived using ultraq layout framework. Main layout
+contains menu with links to application parts. Menu item is selected depending on "selectedMenuItem" attribute.
+It is usually set in controller advice. Main element is replaced by specific page.
+This page is using Thymeleaf template for server-side generated pages.
+*/-->
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
@@ -5,7 +11,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
+    <meta name="description" content="Web application for controlling remote plant watering.">
+    <meta name="author" content="Vit Holasek">
     <title layout:title-pattern="$CONTENT_TITLE"></title>
 
     <link href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
@@ -26,7 +33,6 @@
         }
       }
     </style>
-    <!-- Custom styles for this template -->
     <link href="/css/dashboard.css" rel="stylesheet">
   </head>
   <body>
