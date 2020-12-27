@@ -38,6 +38,8 @@ Linux or Windows device with Java 14 JRE or Docker.
 
 ## Build and Run Watering Service
 
+In order to be able to build the sources you must have Java 14 JDK installed (e.g. [AdoptOpenJDK](https://adoptopenjdk.net/installation.html?variant=openjdk14&jvmVariant=hotspot)).
+
 Build with Gradle and run tests:
 
 ```
